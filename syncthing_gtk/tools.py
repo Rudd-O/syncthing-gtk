@@ -145,16 +145,16 @@ class Timezone(tzinfo):
 		else:
 			self.name = "+%s:%s" % (hours, minutes)
 		self.delta = timedelta(minutes=minutes, hours=hours)
-	
+
 	def __str__(self):
 		return "<Timezone %s>" % (self.name,)
-	
+
 	def utcoffset(self, dt):
 		return self.delta
-	
+
 	def tzname(self, dt):
 		return self.name
-	
+
 	def dst(self, dt):
 		return timedelta(0)
 
@@ -256,7 +256,6 @@ def init_locale(localedir=None):
 	global _localedir
 	_localedir = localedir
 	gettext.bindtextdomain(GETTEXT_DOMAIN, localedir)
-	gettext.bind_textdomain_codeset(GETTEXT_DOMAIN, "utf-8")
 	gettext.textdomain(GETTEXT_DOMAIN)
 
 def get_locale_dir():
@@ -400,7 +399,7 @@ if IS_WINDOWS:
 		except WindowsError:
 			# This is really shouldn't happen. Use executable path.
 			os.path.dirname(sys.executable)
-		
+
 	get_install_path = _get_install_path
 
 def get_executable():
